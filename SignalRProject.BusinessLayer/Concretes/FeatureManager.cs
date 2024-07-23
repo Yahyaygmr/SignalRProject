@@ -13,7 +13,7 @@ namespace SignalRProject.BusinessLayer.Concretes
             throw new NotImplementedException();
         }
 
-        public void Delete(Feature entity)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }

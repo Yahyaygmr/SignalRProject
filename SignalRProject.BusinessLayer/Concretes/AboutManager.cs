@@ -10,33 +10,48 @@ using System.Threading.Tasks;
 
 namespace SignalRProject.BusinessLayer.Concretes
 {
-    public class AboutManager : IContactService
+    public class AboutManager : IAboutService
     {
-        public DbSet<Contact> EntityTable => throw new NotImplementedException();
+        private readonly IAboutDal _aboutDal;
 
-        public void Add(Contact entity)
+        public AboutManager(IAboutDal aboutDal)
         {
-            throw new NotImplementedException();
+            _aboutDal = aboutDal;
         }
 
-        public void Delete(Contact entity)
+        public DbSet<About> EntityTable => _aboutDal.EntityTable;
+
+        public void Add(About entity)
         {
-            throw new NotImplementedException();
+            _aboutDal.Add(entity);
         }
 
-        public List<Contact> GetAll()
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            About? about = _aboutDal.GetById(id);
+            if (about != null)
+            {
+                _aboutDal.Delete(about);
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
 
-        public Contact GetById(int id)
+        public List<About> GetAll()
         {
-            throw new NotImplementedException();
+            return _aboutDal.GetAll();
         }
 
-        public void Update(Contact entity)
+        public About GetById(int id)
         {
-            throw new NotImplementedException();
+            return _aboutDal.GetById(id);
+        }
+
+        public void Update(About entity)
+        {
+            _aboutDal.Update(entity);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace SignalRProject.BusinessLayer.Concretes
             throw new NotImplementedException();
         }
 
-        public void Delete(Testimonial entity)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
