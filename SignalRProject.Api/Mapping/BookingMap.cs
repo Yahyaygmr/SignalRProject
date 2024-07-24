@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SignalRProject.DtoLayer.BookingDtos;
 using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.Api.Mapping
@@ -7,10 +8,10 @@ namespace SignalRProject.Api.Mapping
     {
         public BookingMap()
         {
-            //CreateMap<Booking, CreateBookingDto>().ReverseMap();
-            //CreateMap<Booking, ResultBookingDto>().ReverseMap();
-            //CreateMap<Booking, GetBookingDto>().ReverseMap();
-            //CreateMap<Booking, UpdateBookingDto>().ReverseMap();
+            CreateMap<Booking, CreateBookingDto>().ReverseMap();
+            CreateMap<Booking, ResultBookingDto>().ReverseMap();
+            CreateMap<Booking, GetBookingDto>().ReverseMap();
+            CreateMap<Booking, UpdateBookingDto>().ReverseMap();
         }
     }
 }

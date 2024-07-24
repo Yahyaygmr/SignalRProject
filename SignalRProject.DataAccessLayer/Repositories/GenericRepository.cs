@@ -23,11 +23,13 @@ namespace SignalRProject.DataAccessLayer.Repositories
         public void Add(T entity)
         {
             EntityTable.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(T entity)
         {
             EntityTable.Remove(entity);
+            _context.SaveChanges();
         }
 
         public List<T> GetAll()
@@ -43,6 +45,7 @@ namespace SignalRProject.DataAccessLayer.Repositories
         public void Update(T entity)
         {
             EntityTable.Update(entity);
+            _context.SaveChanges();
         }
     }
 }

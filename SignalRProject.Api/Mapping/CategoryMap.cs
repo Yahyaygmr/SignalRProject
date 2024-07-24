@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SignalRProject.DtoLayer.CategoryDtos;
 using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.Api.Mapping
@@ -7,10 +8,10 @@ namespace SignalRProject.Api.Mapping
     {
         public CategoryMap()
         {
-            //CreateMap<Category, CreateCategoryDto>().ReverseMap();
-            //CreateMap<Category, ResultCategoryDto>().ReverseMap();
-            //CreateMap<Category, GetCategoryDto>().ReverseMap();
-            //CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, ResultCategoryDto>().ReverseMap();
+            CreateMap<Category, GetCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
         }
     }
 }

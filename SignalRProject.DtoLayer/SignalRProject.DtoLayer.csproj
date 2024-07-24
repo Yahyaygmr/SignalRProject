@@ -6,15 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="BookingDtos\" />
-    <Folder Include="CategoryDtos\" />
-    <Folder Include="ContactDtos\" />
-    <Folder Include="DiscountDtos\" />
-    <Folder Include="FeatureDtos\" />
-    <Folder Include="TestimonialDtos\" />
-    <Folder Include="SocialMediaDtos\" />
-    <Folder Include="ProductDtos\" />
-  </ItemGroup>
-
 </Project>
