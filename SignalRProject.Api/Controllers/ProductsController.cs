@@ -43,5 +43,11 @@ namespace SignalRProject.Api.Controllers
             var value = _serviceManager.productService.GetById(id);
             return Ok(value);
         }
+        [HttpGet("ProductListWithCategory")]
+        public IActionResult ProductListWithCategory()
+        {
+            var values = _serviceManager.productService.ListProductsWithCategory();
+            return Ok(values);
+        }
     }
 }

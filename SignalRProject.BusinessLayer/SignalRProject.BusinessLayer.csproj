@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SignalRProject.DataAccessLayer\SignalRProject.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\SignalRProject.DtoLayer\SignalRProject.DtoLayer.csproj" />
   </ItemGroup>
 
 </Project>
