@@ -10,14 +10,9 @@ using System.Threading.Tasks;
 
 namespace SignalRProject.BusinessLayer.Concretes
 {
-    public class AboutManager : IAboutService
+    public class AboutManager(IAboutDal aboutDal) : IAboutService
     {
-        private readonly IAboutDal _aboutDal;
-
-        public AboutManager(IAboutDal aboutDal)
-        {
-            _aboutDal = aboutDal;
-        }
+        private readonly IAboutDal _aboutDal = aboutDal;
 
         public DbSet<About> EntityTable => _aboutDal.EntityTable;
 

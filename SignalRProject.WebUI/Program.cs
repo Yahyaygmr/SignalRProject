@@ -1,7 +1,10 @@
+using DynamicConsume;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDynamicConsume("https://localhost:44343/api/");
 
 var app = builder.Build();
 

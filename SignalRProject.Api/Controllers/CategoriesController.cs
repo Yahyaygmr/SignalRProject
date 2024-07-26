@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class CategoriesController : BasesController
     {
-        [HttpGet]
+        [HttpGet("CategoryList")]
         public IActionResult CategoryList()
         {
             var values = _serviceManager.categoryService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateCategory")]
         public IActionResult CreateCategory(CreateCategoryDto dto)
         {
             var result = _mapper.Map<Category>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("Kategori eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("Delete/{id}")]
         public IActionResult Delete(int id)
         {
             _serviceManager.categoryService.Delete(id);
             return Ok("Kategori silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateCategory")]
         public IActionResult UpdateCategory(UpdateCategoryDto dto)
         {
             var result = _mapper.Map<Category>(dto);
             _serviceManager.categoryService.Update(result);
             return Ok("Kategori güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetCategory/{id}")]
         public IActionResult GetCategory(int id)
         {
             var value = _serviceManager.categoryService.GetById(id);
