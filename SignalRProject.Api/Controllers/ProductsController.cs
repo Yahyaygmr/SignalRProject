@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class ProductsController : BasesController
     {
-        [HttpGet]
+        [HttpGet("ProductList")]
         public IActionResult ProductList()
         {
             var values = _serviceManager.productService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateProduct")]
         public IActionResult CreateProduct(CreateProductDto dto)
         {
             var result = _mapper.Map<Product>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("Ürün eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("DeleteProduct/{id}")]
         public IActionResult DeleteProduct(int id)
         {
             _serviceManager.productService.Delete(id);
             return Ok("Ürün silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateProduct")]
         public IActionResult UpdateProduct(UpdateProductDto dto)
         {
             var result = _mapper.Map<Product>(dto);
             _serviceManager.productService.Update(result);
             return Ok("Ürün güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetProduct/{id}")]
         public IActionResult GetProduct(int id)
         {
             var value = _serviceManager.productService.GetById(id);

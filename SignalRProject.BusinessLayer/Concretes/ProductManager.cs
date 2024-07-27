@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using SignalRProject.BusinessLayer.Abstracts;
 using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
+using SignalRProject.DataAccessLayer.EntityFramework;
 using SignalRProject.DtoLayer.ProductDtos;
 using SignalRProject.EntityLayer.Entities;
 
@@ -19,22 +20,30 @@ namespace SignalRProject.BusinessLayer.Concretes
 
         public void Add(Product entity)
         {
-            throw new NotImplementedException();
+            _productDal.Add(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Product? product = _productDal.GetById(id);
+            if (product != null)
+            {
+                _productDal.Delete(product);
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
 
         public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return _productDal.GetAll();
         }
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _productDal.GetById(id);
         }
 
         public List<ResultProductWithCategoryDto> ListProductsWithCategory()
@@ -56,7 +65,7 @@ namespace SignalRProject.BusinessLayer.Concretes
 
         public void Update(Product entity)
         {
-            throw new NotImplementedException();
+            _productDal.Update(entity);
         }
     }
 }

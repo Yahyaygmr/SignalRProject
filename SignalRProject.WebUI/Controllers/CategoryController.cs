@@ -79,7 +79,7 @@ namespace SignalRProject.WebUI.Controllers
                 TempData["ErrorMessage"] = "Güncelleme işlemi sırasında bir hata oluştu";
                 return RedirectToAction("Index");
             }
-        }
+        } 
 
     }
 }
