@@ -1,0 +1,41 @@
+﻿@model GetAboutByIdDto
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">Hakkımızda Alanı Güncelleme</div>
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Message"]
+            </div>
+        }
+    </div>
+    <form method="post">
+        <input type="hidden" asp-for="AboutId" />
+        <div class="card-body">
+            <div class="form-group">
+                <label for="squareInput">Resim URL</label>
+                <input type="text" class="form-control input-square" id="squareInput" asp-for="ImageUrl">
+            </div>
+            <div class="form-group">
+                <label for="squareInput">Başlık</label>
+                <input type="text" class="form-control input-square" id="squareInput" asp-for="Title">
+            </div>
+            <div class="form-group">
+                <label for="squareInput">Açıklama</label>
+                <textarea class="form-control input-square" cols="5" rows="5" asp-for="Description"></textarea>
+            </div>
+            
+        </div>
+        <div class="card-action">
+            <button class="btn btn-success">Güncelle</button>
+           @*  <a href="/About/Index/" class="btn btn-danger">Vazgeç</a> *@
+        </div>
+
+    </form>
+</div>
+
