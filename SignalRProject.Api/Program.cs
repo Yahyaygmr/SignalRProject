@@ -1,3 +1,4 @@
+using SignalRProject.Api.Hubs;
 using SignalRProject.Api.Mapping;
 using SignalRProject.BusinessLayer.Abstracts;
 using SignalRProject.BusinessLayer.Abstracts.Generics;
@@ -43,6 +44,16 @@ builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddCors(opt => opt.AddPolicy("CorsPolicy", builder =>
+{
+    builder.AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
+    .SetIsOriginAllowed((host)=>true);
+
+}));
+builder.Services.AddSignalR();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -56,11 +67,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<SignalRHub>("/signalrhub");
 
 app.Run();
