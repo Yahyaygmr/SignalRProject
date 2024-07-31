@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class TestimonialsController : BasesController
     {
-        [HttpGet]
+        [HttpGet("TestimonialList")]
         public IActionResult TestimonialList()
         {
             var values = _serviceManager.testimonialService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateTestimonial")]
         public IActionResult CreateTestimonial(CreateTestimonialDto dto)
         {
             var result = _mapper.Map<Testimonial>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("Referans eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("DeleteTestimonial/{id}")]
         public IActionResult DeleteTestimonial(int id)
         {
             _serviceManager.testimonialService.Delete(id);
             return Ok("Referans silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateTestimonial")]
         public IActionResult UpdateTestimonial(UpdateTestimonialDto dto)
         {
             var result = _mapper.Map<Testimonial>(dto);
             _serviceManager.testimonialService.Update(result);
             return Ok("Referans güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetTestimonial/{id}")]
         public IActionResult GetTestimonial(int id)
         {
             var value = _serviceManager.testimonialService.GetById(id);

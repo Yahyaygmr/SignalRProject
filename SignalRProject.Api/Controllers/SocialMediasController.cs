@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class SocialMediasController : BasesController
     {
-        [HttpGet]
+        [HttpGet("GetFeature")]
         public IActionResult SocialMediaList()
         {
             var values = _serviceManager.socialMediaService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateSocialMedia")]
         public IActionResult CreateSocialMedia(CreateSocialMediaDto dto)
         {
             var result = _mapper.Map<SocialMedia>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("Sosyal Medya hesabı eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("DeleteSocialMedia/{id}")]
         public IActionResult DeleteSocialMedia(int id)
         {
             _serviceManager.socialMediaService.Delete(id);
             return Ok("Sosyal Medya hesabı silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateSocialMedia")]
         public IActionResult UpdateSocialMedia(UpdateSocialMediaDto dto)
         {
             var result = _mapper.Map<SocialMedia>(dto);
             _serviceManager.socialMediaService.Update(result);
             return Ok("Sosyal Medya hesabı güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetSocialMedia/{id}")]
         public IActionResult GetSocialMedia(int id)
         {
             var value = _serviceManager.socialMediaService.GetById(id);

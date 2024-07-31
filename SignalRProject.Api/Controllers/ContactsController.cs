@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class ContactsController : BasesController
     {
-        [HttpGet]
+        [HttpGet("ContactList")]
         public IActionResult ContactList()
         {
             var values = _serviceManager.contactService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateContact")]
         public IActionResult CreateContact(CreateContactDto dto)
         {
             var result = _mapper.Map<Contact>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("İletişim bilgisi eklendi.");
         }
-        [HttpDelete]
-        public IActionResult Delete(int id)
+        [HttpDelete("DeleteContact/{id}")]
+        public IActionResult DeleteContact(int id)
         {
             _serviceManager.contactService.Delete(id);
             return Ok("İletişim bilgisi silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateContact")]
         public IActionResult UpdateContact(UpdateContactDto dto)
         {
             var result = _mapper.Map<Contact>(dto);
             _serviceManager.contactService.Update(result);
             return Ok("İletişim bilgisi güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetContact/{id}")]
         public IActionResult GetContact(int id)
         {
             var value = _serviceManager.contactService.GetById(id);

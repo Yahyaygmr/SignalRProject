@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class FeaturesController : BasesController
     {
-        [HttpGet]
+        [HttpGet("FeatureList")]
         public IActionResult FeatureList()
         {
             var values = _serviceManager.featureService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateFeature")]
         public IActionResult CreateFeature(CreateFeatureDto dto)
         {
             var result = _mapper.Map<Feature>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("Feature Alanı eklendi.");
         }
-        [HttpDelete]
-        public IActionResult Delete(int id)
+        [HttpDelete("DeleteFeature/{id}")]
+        public IActionResult DeleteFeature(int id)
         {
             _serviceManager.featureService.Delete(id);
             return Ok("Feature Alanı silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateFeature")]
         public IActionResult UpdateFeature(UpdateFeatureDto dto)
         {
             var result = _mapper.Map<Feature>(dto);
             _serviceManager.featureService.Update(result);
             return Ok("Feature Alanı güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetFeature/{id}")]
         public IActionResult GetFeature(int id)
         {
             var value = _serviceManager.featureService.GetById(id);

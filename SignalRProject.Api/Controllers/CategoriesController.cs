@@ -24,8 +24,8 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("Kategori eklendi.");
         }
-        [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("DeleteCategory/{id}")]
+        public IActionResult DeleteCategory(int id)
         {
             _serviceManager.categoryService.Delete(id);
             return Ok("Kategori silindi.");

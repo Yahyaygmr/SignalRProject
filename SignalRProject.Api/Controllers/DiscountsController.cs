@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class DiscountsController : BasesController
     {
-        [HttpGet]
+        [HttpGet("DiscountList")]
         public IActionResult DiscountList()
         {
             var values = _serviceManager.discountService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateDiscount")]
         public IActionResult CreateDiscount(CreateDiscountDto dto)
         {
             var result = _mapper.Map<Discount>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("İndidrim bilgisi eklendi.");
         }
-        [HttpDelete]
-        public IActionResult Delete(int id)
+        [HttpDelete("DeleteDiscount/{id}")]
+        public IActionResult DeleteDiscount(int id)
         {
             _serviceManager.discountService.Delete(id);
             return Ok("İndidrim bilgisi silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateDiscount")]
         public IActionResult UpdateDiscount(UpdateDiscountDto dto)
         {
             var result = _mapper.Map<Discount>(dto);
             _serviceManager.discountService.Update(result);
             return Ok("İndidrim bilgisi güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetDiscount/{id}")]
         public IActionResult GetDiscount(int id)
         {
             var value = _serviceManager.discountService.GetById(id);

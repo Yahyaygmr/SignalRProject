@@ -9,13 +9,13 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class BookingsController : BasesController
     {
-        [HttpGet]
+        [HttpGet("BookingList")]
         public IActionResult BookingList()
         {
             var values = _serviceManager.bookingService.GetAll();
             return Ok(values);
         }
-        [HttpPost]
+        [HttpPost("CreateBooking")]
         public IActionResult CreateBooking(CreateBookingDto dto)
         {
             var result = _mapper.Map<Booking>(dto);
@@ -24,20 +24,20 @@ namespace SignalRProject.Api.Controllers
 
             return Ok("Rezervasyon işlemi eklendi.");
         }
-        [HttpDelete]
-        public IActionResult Delete(int id)
+        [HttpDelete("DeleteBooking/{id}")]
+        public IActionResult DeleteBooking(int id)
         {
             _serviceManager.bookingService.Delete(id);
             return Ok("Rezervasyon işlemi silindi.");
         }
-        [HttpPut]
+        [HttpPut("UpdateBooking")]
         public IActionResult UpdateBooking(UpdateBookingDto dto)
         {
             var result = _mapper.Map<Booking>(dto);
             _serviceManager.bookingService.Update(result);
             return Ok("Rezervasyon işlemi güncellendi");
         }
-        [HttpGet("{id}")]
+        [HttpGet("GetBooking/{id}")]
         public IActionResult GetBooking(int id)
         {
             var value = _serviceManager.bookingService.GetById(id);
