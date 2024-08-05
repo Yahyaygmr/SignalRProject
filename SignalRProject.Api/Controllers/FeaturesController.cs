@@ -43,5 +43,12 @@ namespace SignalRProject.Api.Controllers
             var value = _serviceManager.featureService.GetById(id);
             return Ok(value);
         }
+
+        [HttpGet("FeatureCount")]
+        public IActionResult FeatureCount()
+        {
+            var values = _serviceManager.featureService.EntityTable.Count();
+            return Ok(values);
+        }
     }
 }

@@ -45,5 +45,13 @@ namespace SignalRProject.Api.Controllers
             var value = _serviceManager.aboutService.GetById(id);
             return Ok(value);
         }
+
+        [HttpGet("AboutCount")]
+        public IActionResult AboutCount()
+        {
+            var values = _serviceManager.aboutService.EntityTable.Count();
+            return Ok(values);
+        }
+
     }
 }

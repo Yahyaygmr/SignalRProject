@@ -1,36 +1,53 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignalRProject.BusinessLayer.Abstracts;
+using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
+using SignalRProject.DataAccessLayer.EntityFramework;
 using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.BusinessLayer.Concretes
 {
     public class BookingManager : IBookingService
     {
-        public DbSet<Booking> EntityTable => throw new NotImplementedException();
+        private readonly IBookingDal bookingDal;
+
+        public BookingManager(IBookingDal bookingDal)
+        {
+            this.bookingDal = bookingDal;
+        }
+
+        public DbSet<Booking> EntityTable => bookingDal.EntityTable;
 
         public void Add(Booking entity)
         {
-            throw new NotImplementedException();
+            bookingDal.Add(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Booking? booking = bookingDal.GetById(id);
+            if (booking != null)
+            {
+                bookingDal.Delete(booking);
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
 
         public List<Booking> GetAll()
         {
-            throw new NotImplementedException();
+            return bookingDal.GetAll();
         }
 
         public Booking GetById(int id)
         {
-            throw new NotImplementedException();
+            return bookingDal.GetById(id);
         }
 
         public void Update(Booking entity)
         {
-            throw new NotImplementedException();
+            bookingDal.Update(entity);
         }
     }
 }

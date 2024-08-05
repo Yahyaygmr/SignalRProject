@@ -49,5 +49,33 @@ namespace SignalRProject.Api.Controllers
             var values = _serviceManager.productService.ListProductsWithCategory();
             return Ok(values);
         }
+
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {
+            var values = _serviceManager.productService.EntityTable.Count();
+            return Ok(values);
+        }
+
+        [HttpGet("ProductCountByHamburger")]
+        public IActionResult ProductCountByHamburger()
+        {
+            var values = _serviceManager.productService.EntityTable.Where(x => x.CategoryId == (_serviceManager.categoryService.EntityTable.Where(x => x.Name == "Hamburger").Select(x => x.CategoryId).FirstOrDefault())).Count();
+            return Ok(values);
+        }
+
+        [HttpGet("ProductCountByDrink")]
+        public IActionResult ProductCountByDrink()
+        {
+            var values = _serviceManager.productService.EntityTable.Where(x=> x.CategoryId == (_serviceManager.categoryService.EntityTable.Where(x=>x.Name == "İçecek").Select(x=>x.CategoryId).FirstOrDefault())).Count();
+            return Ok(values);
+        }
+
+        [HttpGet("ProductAvgPrice")]
+        public IActionResult ProductAvgPrice()
+        {
+            var values = _serviceManager.productService.EntityTable.Average(x=>x.Price);
+            return Ok(values);
+        }
     }
 }

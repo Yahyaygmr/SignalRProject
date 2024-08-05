@@ -43,5 +43,12 @@ namespace SignalRProject.Api.Controllers
             var value = _serviceManager.testimonialService.GetById(id);
             return Ok(value);
         }
+
+        [HttpGet("TestimonialCount")]
+        public IActionResult TestimonialCount()
+        {
+            var values = _serviceManager.testimonialService.EntityTable.Count();
+            return Ok(values);
+        }
     }
 }

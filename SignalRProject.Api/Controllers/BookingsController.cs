@@ -43,5 +43,12 @@ namespace SignalRProject.Api.Controllers
             var value = _serviceManager.bookingService.GetById(id);
             return Ok(value);
         }
+
+        [HttpGet("BookingCount")]
+        public IActionResult BookingCount()
+        {
+            var values = _serviceManager.bookingService.EntityTable.Count();
+            return Ok(values);
+        }
     }
 }
