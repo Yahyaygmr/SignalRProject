@@ -42,6 +42,12 @@ builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 
+builder.Services.AddScoped<IOrderDal, EfOrderDal>();
+builder.Services.AddScoped<IOrderService, OrderManager>();
+
+builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
+builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddCors(opt => opt.AddPolicy("CorsPolicy", builder =>
@@ -49,7 +55,7 @@ builder.Services.AddCors(opt => opt.AddPolicy("CorsPolicy", builder =>
     builder.AllowAnyHeader()
     .AllowAnyMethod()
     .AllowCredentials()
-    .SetIsOriginAllowed((host)=>true);
+    .SetIsOriginAllowed((host) => true);
 
 }));
 builder.Services.AddSignalR();

@@ -67,14 +67,35 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("ProductCountByDrink")]
         public IActionResult ProductCountByDrink()
         {
-            var values = _serviceManager.productService.EntityTable.Where(x=> x.CategoryId == (_serviceManager.categoryService.EntityTable.Where(x=>x.Name == "İçecek").Select(x=>x.CategoryId).FirstOrDefault())).Count();
+            var values = _serviceManager.productService.EntityTable.Where(x => x.CategoryId == (_serviceManager.categoryService.EntityTable.Where(x => x.Name == "İçecek").Select(x => x.CategoryId).FirstOrDefault())).Count();
             return Ok(values);
         }
 
         [HttpGet("ProductAvgPrice")]
         public IActionResult ProductAvgPrice()
         {
-            var values = _serviceManager.productService.EntityTable.Average(x=>x.Price);
+            var values = _serviceManager.productService.EntityTable.Average(x => x.Price);
+            return Ok(values);
+        }
+
+        [HttpGet("ProductNameByMaxPrice")]
+        public IActionResult ProductNameByMaxPrice()
+        {
+            var values = _serviceManager.productService.EntityTable.Where(x => x.Price == (_serviceManager.productService.EntityTable.Max(y => y.Price))).Select(y => y.Name).FirstOrDefault();
+            return Ok(values);
+        }
+
+        [HttpGet("ProductNameByMinPrice")]
+        public IActionResult ProductNameByMinPrice()
+        {
+            var values = _serviceManager.productService.EntityTable.Where(x => x.Price == (_serviceManager.productService.EntityTable.Min(y => y.Price))).Select(y => y.Name).FirstOrDefault();
+            return Ok(values);
+        }
+
+        [HttpGet("ProductPriceAvgByHamburger")]
+        public IActionResult ProductPriceAvgByHamburger()
+        {
+            var values = _serviceManager.productService.EntityTable.Where(x => x.CategoryId == (_serviceManager.categoryService.EntityTable.Where(y => y.Name == "Hamburger").Select(z => z.CategoryId).FirstOrDefault())).Average(x => x.Price);
             return Ok(values);
         }
     }

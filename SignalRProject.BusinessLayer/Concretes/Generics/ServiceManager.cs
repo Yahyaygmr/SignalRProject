@@ -1,5 +1,6 @@
 ﻿using SignalRProject.BusinessLayer.Abstracts;
 using SignalRProject.BusinessLayer.Abstracts.Generics;
+using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,10 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         private readonly IProductService _productService;
         private readonly ISocialMediaService _socialMediaService;
         private readonly ITestimonialService _testimonialService;
+        private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
 
-        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService)
+        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService)
         {
             _aboutService = aboutService;
             _bookingService = bookingService;
@@ -31,6 +34,8 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
             _productService = productService;
             _socialMediaService = socialMediaService;
             _testimonialService = testimonialService;
+            _orderService = orderService;
+            _orderDetailService = orderDetailService;
         }
 
         public IAboutService aboutService => _aboutService;
@@ -50,5 +55,9 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         public ISocialMediaService socialMediaService => _socialMediaService;
 
         public ITestimonialService testimonialService => _testimonialService;
+
+        public IOrderService orderService => _orderService;
+
+        public IOrderDetailService orderDetailService => _orderDetailService;
     }
 }
