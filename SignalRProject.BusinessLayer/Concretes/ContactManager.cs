@@ -1,36 +1,53 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignalRProject.BusinessLayer.Abstracts;
+using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
 using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.BusinessLayer.Concretes
 {
     public class ContactManager : IContactService
     {
-        public DbSet<Contact> EntityTable => throw new NotImplementedException();
+        private readonly IContactDal contactDal;
+
+        public ContactManager(IContactDal contactDal)
+        {
+            this.contactDal = contactDal;
+        }
+
+        public DbSet<Contact> EntityTable => contactDal.EntityTable;
 
         public void Add(Contact entity)
         {
-            throw new NotImplementedException();
+            contactDal.Add(entity);
+        }
+
+        public int ContactCount()
+        {
+            return contactDal.EntityTable.Count();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Contact contact = contactDal.GetById(id);
+            if (contact != null)
+            {
+                contactDal.Delete(contact);
+            }
         }
 
         public List<Contact> GetAll()
         {
-            throw new NotImplementedException();
+            return contactDal.GetAll();
         }
 
         public Contact GetById(int id)
         {
-            throw new NotImplementedException();
+            return contactDal.GetById(id);
         }
 
         public void Update(Contact entity)
         {
-            throw new NotImplementedException();
+            contactDal.Update(entity);
         }
     }
 }

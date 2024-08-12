@@ -16,6 +16,11 @@ namespace SignalRProject.BusinessLayer.Concretes
 
         public DbSet<About> EntityTable => _aboutDal.EntityTable;
 
+        public int AboutCount()
+        {
+            return _aboutDal.EntityTable.Count();
+        }
+
         public void Add(About entity)
         {
             _aboutDal.Add(entity);

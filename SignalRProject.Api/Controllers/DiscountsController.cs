@@ -47,7 +47,7 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("DiscountCount")]
         public IActionResult DiscountCount()
         {
-            var values = _serviceManager.discountService.EntityTable.Count();
+            var values = _serviceManager.discountService.DiscountCount();
             return Ok(values);
         }
     }

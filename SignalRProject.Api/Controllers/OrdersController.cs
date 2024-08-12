@@ -10,21 +10,21 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("TotalOrderCount")]
         public ActionResult TotalOrderCount()
         {
-            var values = _serviceManager.orderService.EntityTable.Count();
+            var values = _serviceManager.orderService.TotalOrderCount();
             return Ok(values);
         }
 
         [HttpGet("ActiveOrderCount")]
         public ActionResult ActiveOrderCount()
         {
-            var values = _serviceManager.orderService.EntityTable.Where(x => x.Description == "Müşteri Masada").Count();
+            var values = _serviceManager.orderService.ActiveOrderCount();
             return Ok(values);
         }
 
         [HttpGet("LastOrderPrice")]
         public ActionResult LastOrderPrice()
         {
-            var values = _serviceManager.orderService.EntityTable.OrderByDescending(x => x.OrderId).Take(1).Select(y => y.TotalPrice).FirstOrDefault();
+            var values = _serviceManager.orderService.LastOrderPrice();
             return Ok(values);
         }
     }

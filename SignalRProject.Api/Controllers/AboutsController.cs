@@ -49,7 +49,7 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("AboutCount")]
         public IActionResult AboutCount()
         {
-            var values = _serviceManager.aboutService.EntityTable.Count();
+            var values = _serviceManager.aboutService.AboutCount();
             return Ok(values);
         }
 

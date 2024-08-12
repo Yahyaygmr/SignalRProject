@@ -47,7 +47,7 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("SocialMediaCount")]
         public IActionResult SocialMediaCount()
         {
-            var values = _serviceManager.socialMediaService.EntityTable.Count();
+            var values = _serviceManager.socialMediaService.SocialMediaCount();
             return Ok(values);
         }
     }

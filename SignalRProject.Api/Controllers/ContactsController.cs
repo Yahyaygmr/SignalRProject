@@ -47,7 +47,7 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("ContactCount")]
         public IActionResult ContactCount()
         {
-            var values = _serviceManager.contactService.EntityTable.Count();
+            var values = _serviceManager.contactService.ContactCount();
             return Ok(values);
         }
     }

@@ -47,7 +47,7 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("BookingCount")]
         public IActionResult BookingCount()
         {
-            var values = _serviceManager.bookingService.EntityTable.Count();
+            var values = _serviceManager.bookingService.BookingCount();
             return Ok(values);
         }
     }

@@ -5,5 +5,6 @@ namespace SignalRProject.BusinessLayer.Abstracts
 {
     public interface IContactService : IGenericService<Contact>
     {
+        int ContactCount();
     }
 }

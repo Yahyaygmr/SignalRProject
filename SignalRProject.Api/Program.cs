@@ -48,6 +48,13 @@ builder.Services.AddScoped<IOrderService, OrderManager>();
 builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
 
+builder.Services.AddScoped<IMoneyCaseDal, EfMoneyCaseDal>();
+builder.Services.AddScoped<IMoneyCaseService, MoneyCaseManager>();
+
+builder.Services.AddScoped<IMenuTableDal, EfMenuTableDal>();
+builder.Services.AddScoped<IMenuTableService, MenuTableManager>();
+
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddCors(opt => opt.AddPolicy("CorsPolicy", builder =>

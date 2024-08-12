@@ -22,8 +22,10 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         private readonly ITestimonialService _testimonialService;
         private readonly IOrderService _orderService;
         private readonly IOrderDetailService _orderDetailService;
+        private readonly IMoneyCaseService _moneyCaseService;
+        private readonly IMenuTableService _menuTableService;
 
-        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService)
+        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService)
         {
             _aboutService = aboutService;
             _bookingService = bookingService;
@@ -36,6 +38,8 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
             _testimonialService = testimonialService;
             _orderService = orderService;
             _orderDetailService = orderDetailService;
+            _moneyCaseService = moneyCaseService;
+            _menuTableService = menuTableService;
         }
 
         public IAboutService aboutService => _aboutService;
@@ -59,5 +63,9 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         public IOrderService orderService => _orderService;
 
         public IOrderDetailService orderDetailService => _orderDetailService;
+
+        public IMoneyCaseService moneyCaseService => _moneyCaseService;
+
+        public IMenuTableService menuTableService => _menuTableService;
     }
 }

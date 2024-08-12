@@ -1,12 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignalRProject.BusinessLayer.Abstracts;
+using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
 using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.BusinessLayer.Concretes
 {
     public class SocialMediaManager : ISocialMediaService
     {
-        public DbSet<SocialMedia> EntityTable => throw new NotImplementedException();
+        private readonly ISocialMediaDal socialMediaDal;
+
+        public SocialMediaManager(ISocialMediaDal socialMediaDal)
+        {
+            this.socialMediaDal = socialMediaDal;
+        }
+
+        public DbSet<SocialMedia> EntityTable => socialMediaDal.EntityTable;
 
         public void Add(SocialMedia entity)
         {
@@ -26,6 +34,11 @@ namespace SignalRProject.BusinessLayer.Concretes
         public SocialMedia GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public int SocialMediaCount()
+        {
+            return socialMediaDal.EntityTable.Count();
         }
 
         public void Update(SocialMedia entity)

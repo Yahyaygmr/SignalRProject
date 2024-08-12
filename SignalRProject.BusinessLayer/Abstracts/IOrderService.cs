@@ -10,5 +10,8 @@ namespace SignalRProject.BusinessLayer.Abstracts
 {
     public interface IOrderService:IGenericService<Order>
     {
+        int TotalOrderCount();
+        int ActiveOrderCount();
+        decimal LastOrderPrice();
     }
 }

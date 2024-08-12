@@ -19,5 +19,7 @@ namespace SignalRProject.BusinessLayer.Abstracts.Generics
         ITestimonialService testimonialService { get; }
         IOrderService orderService { get; }
         IOrderDetailService orderDetailService { get; }
+        IMoneyCaseService moneyCaseService { get; }
+        IMenuTableService menuTableService { get; }
     }
 }

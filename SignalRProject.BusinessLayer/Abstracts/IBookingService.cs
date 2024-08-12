@@ -5,5 +5,6 @@ namespace SignalRProject.BusinessLayer.Abstracts
 {
     public interface IBookingService : IGenericService<Booking>
     {
+        int BookingCount();
     }
 }

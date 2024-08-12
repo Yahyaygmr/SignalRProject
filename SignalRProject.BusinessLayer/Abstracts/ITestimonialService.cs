@@ -5,5 +5,6 @@ namespace SignalRProject.BusinessLayer.Abstracts
 {
     public interface ITestimonialService : IGenericService<Testimonial>
     {
+        int TestimonialCount();
     }
 }

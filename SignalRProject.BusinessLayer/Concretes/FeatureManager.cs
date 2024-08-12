@@ -1,36 +1,53 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignalRProject.BusinessLayer.Abstracts;
+using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
 using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.BusinessLayer.Concretes
 {
     public class FeatureManager : IFeatureService
     {
-        public DbSet<Feature> EntityTable => throw new NotImplementedException();
+        private readonly IFeatureDal featureDal;
+
+        public FeatureManager(IFeatureDal featureDal)
+        {
+            this.featureDal = featureDal;
+        }
+
+        public DbSet<Feature> EntityTable => featureDal.EntityTable;
 
         public void Add(Feature entity)
         {
-            throw new NotImplementedException();
+            featureDal.Add(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Feature? feature = featureDal.GetById(id);
+            if (feature != null)
+            {
+                featureDal.Delete(feature);
+            }
+        }
+
+        public int FeatureCount()
+        {
+            return featureDal.EntityTable.Count();
         }
 
         public List<Feature> GetAll()
         {
-            throw new NotImplementedException();
+            return featureDal.GetAll();
         }
 
         public Feature GetById(int id)
         {
-            throw new NotImplementedException();
+            return featureDal.GetById(id);
         }
 
         public void Update(Feature entity)
         {
-            throw new NotImplementedException();
+            featureDal.Update(entity);
         }
     }
 }

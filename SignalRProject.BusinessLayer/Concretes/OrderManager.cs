@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignalRProject.BusinessLayer.Abstracts;
+using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
 using SignalRProject.EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,31 +12,56 @@ namespace SignalRProject.BusinessLayer.Concretes
 {
     public class OrderManager : IOrderService
     {
-        public DbSet<Order> EntityTable => throw new NotImplementedException();
+        private readonly IOrderDal orderDal;
+
+        public OrderManager(IOrderDal orderDal)
+        {
+            this.orderDal = orderDal;
+        }
+
+        public DbSet<Order> EntityTable => orderDal.EntityTable;
+
+        public int ActiveOrderCount()
+        {
+            return orderDal.EntityTable.Where(x => x.Description == "Müşteri Masada").Count();
+        }
 
         public void Add(Order entity)
         {
-            throw new NotImplementedException();
+            orderDal.Add(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Order? order = orderDal.GetById(id);
+            if (order != null)
+            {
+                orderDal.Delete(order);
+            }
         }
 
         public List<Order> GetAll()
         {
-            throw new NotImplementedException();
+            return orderDal.GetAll();
         }
 
         public Order GetById(int id)
         {
-            throw new NotImplementedException();
+            return orderDal.GetById(id);
         }
 
+        public decimal LastOrderPrice()
+        {
+            return orderDal.EntityTable.OrderByDescending(x => x.OrderId).Take(1).Select(y => y.TotalPrice).FirstOrDefault();
+        }
+
+        public int TotalOrderCount()
+        {
+            return orderDal.EntityTable.Count();
+        }
         public void Update(Order entity)
         {
-            throw new NotImplementedException();
+            orderDal.Update(entity);
         }
     }
 }

@@ -1,12 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignalRProject.BusinessLayer.Abstracts;
+using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
 using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.BusinessLayer.Concretes
 {
     public class OrderDetailManager : IOrderDetailService
     {
-        public DbSet<OrderDetail> EntityTable => throw new NotImplementedException();
+        private readonly IOrderDetailDal orderDetailDal;
+
+        public OrderDetailManager(IOrderDetailDal orderDetailDal)
+        {
+            this.orderDetailDal = orderDetailDal;
+        }
+
+        public DbSet<OrderDetail> EntityTable => orderDetailDal.EntityTable;
 
         public void Add(OrderDetail entity)
         {

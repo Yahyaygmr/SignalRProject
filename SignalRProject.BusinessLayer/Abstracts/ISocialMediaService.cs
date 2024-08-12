@@ -5,5 +5,6 @@ namespace SignalRProject.BusinessLayer.Abstracts
 {
     public interface ISocialMediaService : IGenericService<SocialMedia>
     {
+        int SocialMediaCount();
     }
 }

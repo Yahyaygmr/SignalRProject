@@ -47,19 +47,19 @@ namespace SignalRProject.Api.Controllers
         [HttpGet("CategoryCount")]
         public IActionResult CategoryCount()
         {
-            var values = _serviceManager.categoryService.EntityTable.Count();
+            var values = _serviceManager.categoryService.CategoryCount();
             return Ok(values);
         }
         [HttpGet("ActiveCategoryCount")]
         public IActionResult ActiveCategoryCount()
         {
-            var values = _serviceManager.categoryService.EntityTable.Where(x => x.Status == true).Count();
+            var values = _serviceManager.categoryService.ActiveCategoryCount();
             return Ok(values);
         }
         [HttpGet("PassiveCategoryCount")]
         public IActionResult PassiveCategoryCount()
         {
-            var values = _serviceManager.categoryService.EntityTable.Where(x => x.Status == false).Count();
+            var values = _serviceManager.categoryService.PassiveCategoryCount();
             return Ok(values);
         }
     }

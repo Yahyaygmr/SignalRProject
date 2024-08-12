@@ -10,5 +10,6 @@ namespace SignalRProject.BusinessLayer.Abstracts
 {
     public interface IAboutService : IGenericService<About>
     {
+        int AboutCount();
     }
 }

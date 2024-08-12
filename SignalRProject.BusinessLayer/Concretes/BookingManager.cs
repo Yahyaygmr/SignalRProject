@@ -22,6 +22,11 @@ namespace SignalRProject.BusinessLayer.Concretes
             bookingDal.Add(entity);
         }
 
+        public int BookingCount()
+        {
+            return bookingDal.EntityTable.Count();
+        }
+
         public void Delete(int id)
         {
             Booking? booking = bookingDal.GetById(id);
