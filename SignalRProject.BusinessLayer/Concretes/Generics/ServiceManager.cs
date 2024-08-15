@@ -24,8 +24,9 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         private readonly IOrderDetailService _orderDetailService;
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IMenuTableService _menuTableService;
+        private readonly IBasketService _basketService;
 
-        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService)
+        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBasketService basketService)
         {
             _aboutService = aboutService;
             _bookingService = bookingService;
@@ -40,6 +41,7 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
             _orderDetailService = orderDetailService;
             _moneyCaseService = moneyCaseService;
             _menuTableService = menuTableService;
+            _basketService = basketService;
         }
 
         public IAboutService aboutService => _aboutService;
@@ -67,5 +69,7 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         public IMoneyCaseService moneyCaseService => _moneyCaseService;
 
         public IMenuTableService menuTableService => _menuTableService;
+
+        public IBasketService basketService => _basketService;
     }
 }

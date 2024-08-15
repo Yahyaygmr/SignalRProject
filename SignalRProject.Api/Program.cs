@@ -7,6 +7,7 @@ using SignalRProject.BusinessLayer.Concretes.Generics;
 using SignalRProject.DataAccessLayer.Abstracts.Interfaces;
 using SignalRProject.DataAccessLayer.Concretes;
 using SignalRProject.DataAccessLayer.EntityFramework;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +55,12 @@ builder.Services.AddScoped<IMoneyCaseService, MoneyCaseManager>();
 builder.Services.AddScoped<IMenuTableDal, EfMenuTableDal>();
 builder.Services.AddScoped<IMenuTableService, MenuTableManager>();
 
+builder.Services.AddScoped<IBasketDal, EfBasketDal>();
+builder.Services.AddScoped<IBasketService, BasketManager>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -67,7 +74,7 @@ builder.Services.AddCors(opt => opt.AddPolicy("CorsPolicy", builder =>
 }));
 builder.Services.AddSignalR();
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
