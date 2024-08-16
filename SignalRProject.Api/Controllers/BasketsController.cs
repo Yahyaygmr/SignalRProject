@@ -31,6 +31,7 @@ namespace SignalRProject.Api.Controllers
         [HttpPost("[action]")]
         public IActionResult CreateBasket(CreateBasketDto dto)
         {
+
             var result = _mapper.Map<Basket>(dto);
             _serviceManager.basketService.Add(result);
 
