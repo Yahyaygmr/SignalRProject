@@ -10,5 +10,7 @@ namespace SignalRProject.BusinessLayer.Abstracts
 {
     public interface INotificationService : IGenericService<Notification>
     {
+        int NotificationCountByStatus(bool status);
+        List<Notification> GetNotificationsByStatus(bool status);
     }
 }

@@ -77,5 +77,14 @@ namespace SignalRProject.Api.Hubs
             var values = _serviceManager.bookingService.GetAll();
             await Clients.All.SendAsync("RecieveBookingList", values);
         }
+
+        public async Task SendNotification()
+        {
+            var value = _serviceManager.notificationService.NotificationCountByStatus(false);
+            await Clients.All.SendAsync("RecieveNotificationCountByStatusFalse", value);
+
+            var value1 = _serviceManager.notificationService.GetNotificationsByStatus(false);
+            await Clients.All.SendAsync("RecieveNotificationListByStatusFalse", value1);
+        }
     }
 }

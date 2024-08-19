@@ -19,36 +19,43 @@ namespace SignalRProject.Api.Controllers
         public IActionResult CreateNotification(CreateNotificationDto dto)
         {
             var result = _mapper.Map<Notification>(dto);
-
+            result.Status = false;
             _serviceManager.notificationService.Add(result);
 
-            return Ok("Rezervasyon işlemi eklendi.");
+            return Ok("Bildirim eklendi.");
         }
         [HttpDelete("[action]/{id}")]
         public IActionResult DeleteNotification(int id)
         {
             _serviceManager.notificationService.Delete(id);
-            return Ok("Rezervasyon işlemi silindi.");
+            return Ok("Bildirim silindi.");
         }
         [HttpPut("[action]")]
         public IActionResult UpdateNotification(UpdateNotificationDto dto)
         {
             var result = _mapper.Map<Notification>(dto);
             _serviceManager.notificationService.Update(result);
-            return Ok("Rezervasyon işlemi güncellendi");
+            return Ok("Bildirim güncellendi");
         }
         [HttpGet("[action]/{id}")]
         public IActionResult GetNotification(int id)
         {
             var value = _serviceManager.notificationService.GetById(id);
-            return Ok(value);
+            var result = _mapper.Map<GetNotificationByIdDto>(value);
+            return Ok(result);
         }
 
-        //[HttpGet("[action]")]
-        //public IActionResult NotificationCount()
-        //{
-        //    var values = _serviceManager.notificationService.NotificationCount();
-        //    return Ok(values);
-        //}
+        [HttpGet("[action]")]
+        public IActionResult NotificationCount()
+        {
+            var values = _serviceManager.notificationService.NotificationCountByStatus(false);
+            return Ok(values);
+        }
+        [HttpGet("[action]")]
+        public IActionResult GetNotificationsByStatusFalse()
+        {
+            var values = _serviceManager.notificationService.GetNotificationsByStatus(false);
+            return Ok(values);
+        }
     }
 }

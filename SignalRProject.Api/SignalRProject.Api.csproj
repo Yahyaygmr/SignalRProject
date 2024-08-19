@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DAL\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SignalRProject.BusinessLayer\SignalRProject.BusinessLayer.csproj" />
     <ProjectReference Include="..\SignalRProject.DataAccessLayer\SignalRProject.DataAccessLayer.csproj" />
     <ProjectReference Include="..\SignalRProject.DtoLayer\SignalRProject.DtoLayer.csproj" />

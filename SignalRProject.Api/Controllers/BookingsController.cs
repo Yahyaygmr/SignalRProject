@@ -41,7 +41,8 @@ namespace SignalRProject.Api.Controllers
         public IActionResult GetBooking(int id)
         {
             var value = _serviceManager.bookingService.GetById(id);
-            return Ok(value);
+            var result = _mapper.Map<GetBookingDto>(value);
+            return Ok(result);
         }
 
         [HttpGet("BookingCount")]

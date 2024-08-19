@@ -12,8 +12,22 @@ namespace SignalRProject.DataAccessLayer.EntityFramework
 {
     public class EfNotificationDal : GenericRepository<Notification>, INotificationDal
     {
+        private readonly SignalRContext _context;
         public EfNotificationDal(SignalRContext context) : base(context)
         {
+            _context = context;
+        }
+
+        public List<Notification> GetNotificationsByStatus(bool status)
+        {
+            return _context.Notifications.Where(x => x.Status == status).ToList();
+        }
+
+        public int NotificationCountByStatus(bool status)
+        {
+            return _context.Notifications
+                .Where(x => x.Status == status)
+                .Count();
         }
     }
 }

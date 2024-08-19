@@ -9,5 +9,7 @@ namespace SignalRProject.DataAccessLayer.Abstracts.Interfaces
 {
     public interface INotificationDal : IGenericDal<Notification>
     {
+        int NotificationCountByStatus(bool status);
+        List<Notification> GetNotificationsByStatus(bool status);
     }
 }

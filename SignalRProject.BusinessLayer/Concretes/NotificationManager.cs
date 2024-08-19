@@ -45,6 +45,16 @@ namespace SignalRProject.BusinessLayer.Concretes
             return _notificationDal.GetById(id);
         }
 
+        public List<Notification> GetNotificationsByStatus(bool status)
+        {
+            return _notificationDal.GetNotificationsByStatus(status);
+        }
+
+        public int NotificationCountByStatus(bool status)
+        {
+            return _notificationDal.NotificationCountByStatus(status);
+        }
+
         public void Update(Notification entity)
         {
             _notificationDal.Update(entity);

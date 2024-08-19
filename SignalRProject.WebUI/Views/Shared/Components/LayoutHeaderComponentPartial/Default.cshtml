@@ -1,4 +1,29 @@
 ﻿
+<script type="text/javascript">
+    $(document).ready(() => {
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44343/SignalRHub").build();
+
+        $("#connstatus").text(connection.state);
+
+        connection.start().then(() => {
+            $("#connstatus").text(connection.state);
+            setInterval(() => {
+                connection.invoke("SendNotification");
+            }, 1000)
+
+        }).catch((err) => { console.log(err) });
+
+        connection.on("RecieveNotificationCountByStatusFalse", (value) => {
+            $("#notificationcount").text(value);
+            $("#notificationcount1").text(value);
+        });
+
+        connection.on("RecieveNotificationListByStatusFalse", (value) => {
+            console.log(value);
+        });
+
+    });
+</script>
 <div class="main-header">
     <div class="logo-header">
         <a href="index.html" class="logo">
@@ -37,11 +62,11 @@
                 <li class="nav-item dropdown hidden-caret">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="la la-bell"></i>
-                        <span class="notification">3</span>
+                        <span class="notification" id="notificationcount"></span>
                     </a>
                     <ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
                         <li>
-                            <div class="dropdown-title">You have 4 new notification</div>
+                            <div class="dropdown-title"><span id="notificationcount1"></span> yeni bildirim </div>
                         </li>
                         <li>
                             <div class="notif-center">
