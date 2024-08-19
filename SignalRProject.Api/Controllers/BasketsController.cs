@@ -33,9 +33,25 @@ namespace SignalRProject.Api.Controllers
         {
 
             var result = _mapper.Map<Basket>(dto);
+
+            result.Count = 1;
+            result.MenuTableId = 4;
+            result.Price = _serviceManager.productService.EntityTable
+                .Where(x => x.ProductId == result.ProductId)
+                .Select(x => x.Price)
+                .FirstOrDefault();
+            result.TotalPrice = 0;
+
             _serviceManager.basketService.Add(result);
 
             return Ok(result);
+        }
+        [HttpDelete("[action]/{id}")]
+        public IActionResult DeleteBasket(int id)
+        {
+            _serviceManager.basketService.Delete(id);
+
+            return Ok("Sepetteki Ürün Silindi");
         }
 
     }

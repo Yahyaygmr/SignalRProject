@@ -71,5 +71,11 @@ namespace SignalRProject.Api.Hubs
             var value2 = _serviceManager.menuTableService.MenuTableCount();
             await Clients.All.SendAsync("ReceiveMenuTableCount", value2);
         }
+
+        public async Task GetBookingList()
+        {
+            var values = _serviceManager.bookingService.GetAll();
+            await Clients.All.SendAsync("RecieveBookingList", values);
+        }
     }
 }

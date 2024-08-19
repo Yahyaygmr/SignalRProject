@@ -25,8 +25,9 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IMenuTableService _menuTableService;
         private readonly IBasketService _basketService;
+        private readonly INotificationService _notificationService;
 
-        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBasketService basketService)
+        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBasketService basketService, INotificationService notificationService)
         {
             _aboutService = aboutService;
             _bookingService = bookingService;
@@ -42,6 +43,7 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
             _moneyCaseService = moneyCaseService;
             _menuTableService = menuTableService;
             _basketService = basketService;
+            _notificationService = notificationService;
         }
 
         public IAboutService aboutService => _aboutService;
@@ -71,5 +73,7 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         public IMenuTableService menuTableService => _menuTableService;
 
         public IBasketService basketService => _basketService;
+
+        public INotificationService notificationService => _notificationService;
     }
 }
