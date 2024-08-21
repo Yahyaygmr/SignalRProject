@@ -8,6 +8,7 @@ namespace SignalRProject.Api.Hubs
     {
         private readonly IServiceManager _serviceManager;
 
+        static int clientCount = 0;
         public SignalRHub(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -59,7 +60,6 @@ namespace SignalRProject.Api.Hubs
             var value16 = _serviceManager.menuTableService.MenuTableCount();
             await Clients.All.SendAsync("ReceiveMenuTableCount", value16);
         }
-
         public async Task SendProgress()
         {
             var value = _serviceManager.moneyCaseService.TotalMoneyCaseAmount();
@@ -71,13 +71,11 @@ namespace SignalRProject.Api.Hubs
             var value2 = _serviceManager.menuTableService.MenuTableCount();
             await Clients.All.SendAsync("ReceiveMenuTableCount", value2);
         }
-
         public async Task GetBookingList()
         {
             var values = _serviceManager.bookingService.GetAll();
             await Clients.All.SendAsync("RecieveBookingList", values);
         }
-
         public async Task SendNotification()
         {
             var value = _serviceManager.notificationService.NotificationCountByStatus(false);
@@ -94,6 +92,18 @@ namespace SignalRProject.Api.Hubs
         public async Task SendMessage(string user, string message)
         {
             await Clients.All.SendAsync("RecieveMessage", user, message);
+        }
+        public override async Task OnConnectedAsync()
+        {
+            clientCount++;
+            await Clients.All.SendAsync("RecieveClientCount", clientCount);
+            await base.OnConnectedAsync();
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            clientCount--;
+            await Clients.All.SendAsync("RecieveClientCount", clientCount);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

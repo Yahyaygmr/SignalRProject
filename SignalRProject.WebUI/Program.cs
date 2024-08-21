@@ -1,8 +1,14 @@
 using DynamicConsume;
+using SignalRProject.DataAccessLayer.Concretes;
+using SignalRProject.EntityLayer.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<SignalRContext>();
+builder.Services.AddIdentity<AppUser, AppRole>()
+    .AddEntityFrameworkStores<SignalRContext>();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddDynamicConsume("https://localhost:44343/api/");
 
@@ -18,9 +24,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
