@@ -50,6 +50,16 @@ namespace SignalRProject.BusinessLayer.Concretes
             return _notificationDal.GetNotificationsByStatus(status);
         }
 
+        public void NotificationChangeToFalse(int id)
+        {
+            _notificationDal.NotificationChangeToFalse(id);
+        }
+
+        public void NotificationChangeToTrue(int id)
+        {
+            _notificationDal.NotificationChangeToTrue(id);
+        }
+
         public int NotificationCountByStatus(bool status)
         {
             return _notificationDal.NotificationCountByStatus(status);

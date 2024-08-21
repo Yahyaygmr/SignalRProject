@@ -4,7 +4,7 @@ using SignalRProject.EntityLayer.Entities;
 
 namespace SignalRProject.Api.Mapping
 {
-    public class NotificationMap:Profile
+    public class NotificationMap : Profile
     {
         public NotificationMap()
         {

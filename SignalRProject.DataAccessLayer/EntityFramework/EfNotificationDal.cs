@@ -23,6 +23,26 @@ namespace SignalRProject.DataAccessLayer.EntityFramework
             return _context.Notifications.Where(x => x.Status == status).ToList();
         }
 
+        public void NotificationChangeToFalse(int id)
+        {
+            Notification? notification = _context.Notifications.Find(id);
+            if (notification != null)
+            {
+                notification.Status = false;
+                _context.SaveChanges();
+            }
+        }
+
+        public void NotificationChangeToTrue(int id)
+        {
+            Notification? notification = _context.Notifications.Find(id);
+            if (notification != null)
+            {
+                notification.Status = true;
+                _context.SaveChanges();
+            }
+        }
+
         public int NotificationCountByStatus(bool status)
         {
             return _context.Notifications

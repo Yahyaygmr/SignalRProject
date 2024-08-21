@@ -11,5 +11,7 @@ namespace SignalRProject.DataAccessLayer.Abstracts.Interfaces
     {
         int NotificationCountByStatus(bool status);
         List<Notification> GetNotificationsByStatus(bool status);
+        void NotificationChangeToTrue(int id);
+        void NotificationChangeToFalse(int id);
     }
 }

@@ -13,13 +13,15 @@ namespace SignalRProject.Api.Controllers
         public IActionResult NotificationList()
         {
             var values = _serviceManager.notificationService.GetAll();
-            return Ok(values);
+            var result = _mapper.Map<List<ResultNotificationDto>>(values);
+            return Ok(result);
         }
         [HttpPost("[action]")]
         public IActionResult CreateNotification(CreateNotificationDto dto)
         {
             var result = _mapper.Map<Notification>(dto);
             result.Status = false;
+            result.Date = DateTime.Now;
             _serviceManager.notificationService.Add(result);
 
             return Ok("Bildirim eklendi.");
@@ -56,6 +58,18 @@ namespace SignalRProject.Api.Controllers
         {
             var values = _serviceManager.notificationService.GetNotificationsByStatus(false);
             return Ok(values);
+        }
+        [HttpGet("[action]/{id}")]
+        public IActionResult NotificationStatusChangeToFalse(int id)
+        {
+            _serviceManager.notificationService.NotificationChangeToFalse(id);
+            return Ok("Bildirim Okunmadı Olarak İşaretlendi");
+        }
+        [HttpGet("[action]/{id}")]
+        public IActionResult NotificationStatusChangeToTrue(int id)
+        {
+            _serviceManager.notificationService.NotificationChangeToTrue(id);
+            return Ok("Bildirim Okundu Olarak İşaretlendi");
         }
     }
 }

@@ -20,6 +20,20 @@
 
         connection.on("RecieveNotificationListByStatusFalse", (value) => {
             console.log(value);
+            $("#notilist").empty();
+            for (var i = 0; i < value.length; i++) {
+                $("#notilist").append(`<a href="#">
+                        <div class="${value[i].type}"><i class="${value[i].icon}"></i></div>
+                        <div class="notif-content">
+                        <span class="block">
+                        ${value[i].description}
+                        </span>
+                        <span class="time">${value[i].date}</span>
+                        </div>
+                        </a>
+                        `
+                )
+            };
         });
 
     });
@@ -70,44 +84,7 @@
                         </li>
                         <li>
                             <div class="notif-center">
-                                <a href="#">
-                                    <div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            New user registered
-                                        </span>
-                                        <span class="time">5 minutes ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Rahmad commented on Admin
-                                        </span>
-                                        <span class="time">12 minutes ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-img">
-                                        <img src="~/dashboard/assets/img/profile2.jpg" alt="Img Profile">
-                                    </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Reza send messages to you
-                                        </span>
-                                        <span class="time">12 minutes ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Farrah liked Admin
-                                        </span>
-                                        <span class="time">17 minutes ago</span>
-                                    </div>
-                                </a>
+                                <div id="notilist"></div>
                             </div>
                         </li>
                         <li>
@@ -116,7 +93,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="~/dashboard/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span>Yahya</span></span> </a>
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="~/dashboard/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span>Yahya</span> </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
                             <div class="user-box">
