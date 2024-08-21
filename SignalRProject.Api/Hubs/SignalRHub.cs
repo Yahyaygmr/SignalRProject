@@ -91,5 +91,9 @@ namespace SignalRProject.Api.Hubs
             var value = _serviceManager.menuTableService.GetAll();
             await Clients.All.SendAsync("RecieveMenuTableList", value);
         }
+        public async Task SendMessage(string user, string message)
+        {
+            await Clients.All.SendAsync("RecieveMessage", user, message);
+        }
     }
 }
