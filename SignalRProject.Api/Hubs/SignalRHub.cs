@@ -86,5 +86,10 @@ namespace SignalRProject.Api.Hubs
             var value1 = _serviceManager.notificationService.GetNotificationsByStatus(false);
             await Clients.All.SendAsync("RecieveNotificationListByStatusFalse", value1);
         }
+        public async Task SendMenuTableList()
+        {
+            var value = _serviceManager.menuTableService.GetAll();
+            await Clients.All.SendAsync("RecieveMenuTableList", value);
+        }
     }
 }

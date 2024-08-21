@@ -1,0 +1,37 @@
+﻿@model GetMenuTableByIdDto
+@{
+    ViewData["Title"] = "UpdateMenuTable";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title"> Masa Güncelle</div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+    </div>
+    <form method="post">
+        <input type="hidden" asp-for="MenuTableId"/>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="squareInput">Masa Adı</label>
+                <input type="text" class="form-control input-square" id="squareInput" asp-for="Name">
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" asp-for="Status">
+                    <span class="form-check-sign">Durumu(Aktif mi?)</span>
+                </label>
+            </div>
+        </div>
+        <div class="card-action">
+            <button class="btn btn-success">Güncelle</button>
+            <a href="/MenuTable/Index/" class="btn btn-danger">Vazgeç</a>
+        </div>
+
+    </form>
+</div>

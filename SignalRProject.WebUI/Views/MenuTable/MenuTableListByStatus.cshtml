@@ -1,0 +1,80 @@
+﻿@model List<ResultMenuTableDto>
+
+@{
+    ViewData["Title"] = "MenuTableListByStatus";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    $(document).ready(() => {
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44343/SignalRHub").build();
+        $("#connstatus").text(connection.state);
+        connection.start().then(() => {
+            $("#connstatus").text(connection.state);
+            setInterval(() => {
+                connection.invoke("SendMenuTableList");
+            }, 1000);
+        }).catch((err) => { console.log(err) });
+
+        connection.on("RecieveMenuTableList", (value) => {
+            $("#menutablelist").empty();
+            for (var i = 0; i < value.length; i++) {
+                if (value[i].status == true) {
+                    $("#menutablelist").append(
+                        ` <div class="col-md-3">
+                        <div class="card card-stats card-success">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-cutlery"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">${value[i].name}</p>
+                                            <h4 class="card-title" id="categorycount">Masa Dolu</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                    );
+                } else {
+                    $("#menutablelist").append(
+                        ` <div class="col-md-3">
+                        <div class="card card-stats card-danger">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-close"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">${value[i].name}</p>
+                                            <h4 class="card-title" id="categorycount">Masa Boş</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                    );
+                }
+            }
+        });
+
+    });
+
+</script>
+<h4 class="page-title">Anlık Masa Durumları</h4>
+<div id="menutablelist" class="row">
+</div>
+
+
