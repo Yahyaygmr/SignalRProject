@@ -11,14 +11,16 @@ namespace SignalRProject.WebUI.Controllers
         private readonly Consume<object> _deleteBookingConsume;
         private readonly Consume<GetBookingByIdDto> _getBookingByIdConsume;
         private readonly Consume<UpdateBookingDto> _updateBookingConsume;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public BookingController(Consume<ResultBookingDto> resultBookingConsume, Consume<CreateBookingDto> createBookingConsume, Consume<object> deleteBookingConsume, Consume<GetBookingByIdDto> getBookingByIdConsume, Consume<UpdateBookingDto> updateBookingConsume)
+        public BookingController(Consume<ResultBookingDto> resultBookingConsume, Consume<CreateBookingDto> createBookingConsume, Consume<object> deleteBookingConsume, Consume<GetBookingByIdDto> getBookingByIdConsume, Consume<UpdateBookingDto> updateBookingConsume, IHttpClientFactory httpClientFactory)
         {
             _resultBookingConsume = resultBookingConsume;
             _createBookingConsume = createBookingConsume;
             _deleteBookingConsume = deleteBookingConsume;
             _getBookingByIdConsume = getBookingByIdConsume;
             _updateBookingConsume = updateBookingConsume;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<IActionResult> Index()
@@ -48,7 +50,7 @@ namespace SignalRProject.WebUI.Controllers
         }
         public async Task<IActionResult> DeleteBooking(int id)
         {
-            var result = await _deleteBookingConsume.DeleteAsync("bookings/delete", id);
+            var result = await _deleteBookingConsume.DeleteAsync("bookings/deletebooking", id);
             if (result > 0)
             {
                 return RedirectToAction("Index");
@@ -79,6 +81,24 @@ namespace SignalRProject.WebUI.Controllers
                 TempData["ErrorMessage"] = "Güncelleme işlemi sırasında bir hata oluştu";
                 return RedirectToAction("Index");
             }
+        }
+        public async Task<IActionResult> SetBookingStatusApproved(int id)
+        {
+            var responseMessage = await _httpClientFactory.CreateClient().GetAsync($"https://localhost:44343/api/Bookings/SetBookingStatusApproved/{id}");
+            if(responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public async Task<IActionResult> SetBookingStatusCancelled(int id)
+        {
+            var responseMessage = await _httpClientFactory.CreateClient().GetAsync($"https://localhost:44343/api/Bookings/SetBookingStatusCancelled/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

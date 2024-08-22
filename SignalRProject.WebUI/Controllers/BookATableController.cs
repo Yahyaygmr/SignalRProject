@@ -22,6 +22,7 @@ namespace SignalRProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CreateBookingDto dto)
         {
+            dto.Description = "";
             var result = await _createBookingConsume.PostAsync("bookings/createbooking", dto);
             if(result>0)
             {

@@ -9,35 +9,35 @@ namespace SignalRProject.Api.Controllers
     [ApiController]
     public class BookingsController : BasesController
     {
-        [HttpGet("BookingList")]
+        [HttpGet("[action]")]
         public IActionResult BookingList()
         {
             var values = _serviceManager.bookingService.GetAll();
             return Ok(values);
         }
-        [HttpPost("CreateBooking")]
+        [HttpPost("[action]")]
         public IActionResult CreateBooking(CreateBookingDto dto)
         {
             var result = _mapper.Map<Booking>(dto);
-
+            result.Description = "Rezervasyon Alındı";
             _serviceManager.bookingService.Add(result);
 
             return Ok("Rezervasyon işlemi eklendi.");
         }
-        [HttpDelete("DeleteBooking/{id}")]
+        [HttpDelete("[action]/{id}")]
         public IActionResult DeleteBooking(int id)
         {
             _serviceManager.bookingService.Delete(id);
             return Ok("Rezervasyon işlemi silindi.");
         }
-        [HttpPut("UpdateBooking")]
+        [HttpPut("[action]")]
         public IActionResult UpdateBooking(UpdateBookingDto dto)
         {
             var result = _mapper.Map<Booking>(dto);
             _serviceManager.bookingService.Update(result);
             return Ok("Rezervasyon işlemi güncellendi");
         }
-        [HttpGet("GetBooking/{id}")]
+        [HttpGet("[action]/{id}")]
         public IActionResult GetBooking(int id)
         {
             var value = _serviceManager.bookingService.GetById(id);
@@ -45,11 +45,23 @@ namespace SignalRProject.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("BookingCount")]
+        [HttpGet("[action]")]
         public IActionResult BookingCount()
         {
             var values = _serviceManager.bookingService.BookingCount();
             return Ok(values);
+        }
+        [HttpGet("[action]/{id}")]
+        public IActionResult SetBookingStatusApproved(int id)
+        {
+            _serviceManager.bookingService.BookingSetStatusApproved(id);
+            return Ok("Rezervasyon Durumu Onaylandı Olarak Güncellendi");
+        }
+        [HttpGet("[action]/{id}")]
+        public IActionResult SetBookingStatusCancelled(int id)
+        {
+            _serviceManager.bookingService.BookingSetStatusCancelled(id);
+            return Ok("Rezervasyon Durumu İptal Edildi Olarak Güncellendi");
         }
     }
 }

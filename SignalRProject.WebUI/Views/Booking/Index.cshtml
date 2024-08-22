@@ -33,6 +33,8 @@
                                 <th scope="col">Rezervasyon Durumu</th>
                                 <th scope="col">Sil</th>
                                 <th scope="col">Güncelle</th>
+                                     <th scope="col">Onayla</th>
+                                    <th scope="col">İptal Et</th>
                             </tr>
                             </thead> <tbody>`
             $.each(value, (index, item) => {
@@ -42,9 +44,11 @@
                                         <td>${item.mail}</td>
                                         <td>${item.date}</td>
                                         <td>${item.personCount}</td>
-                                        <td>${"Rezervasyon Alındı"}</td>
+                                            <td>${item.description}</td>
                                         <td><a href="/Booking/DeleteBooking/${item.bookingId}" class="btn btn-outline-danger">Sil</a></td>
                                         <td><a href="/Booking/UpdateBooking/${item.bookingId}" class="btn btn-outline-success">Güncelle</a></td>
+                                                 <td><a href="/Booking/SetBookingStatusApproved/${item.bookingId}" class="btn btn-outline-info">Onayla</a></td>
+                                                <td><a href="/Booking/SetBookingStatusCancelled/${item.bookingId}" class="btn btn-outline-dark">İptal Et</a></td>
                                 </tr>`
                 
             });
@@ -74,37 +78,9 @@
                     Rezervasyon ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
                 </div>
                 <div id="bookingList"></div>
-              @*   <table class="table mt-3">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Rezervasyon Yapan</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Tarih</th>
-                            <th scope="col">Kişi Sayısı</th>
-                            <th scope="col">Sil</th>
-                            <th scope="col">Güncelle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            count++;
-                            <tr>
-                                <th>@count</th>
-                                <td>@item.Title</td>
-                                <td>@item.Mail</td>
-                                <td>@item.Date</td>
-                                <td>@item.PersonCount</td>
-                                <td><a href="/Booking/DeleteBooking/@item.BookingId" class="btn btn-outline-danger">Sil</a></td>
-                                <td><a href="/Booking/UpdateBooking/@item.BookingId" class="btn btn-outline-success">Güncelle</a></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table> *@
-                <a href="/Booking/CreateBooking/" class="btn btn-outline-primary">Yeni Rezervasyon Oluştur</a>
+             
+                <a href="/BookATable/Index/" class="btn btn-outline-primary">Yeni Rezervasyon Oluştur</a>
             </div>
-           
         </div>
     </div>
 </div>

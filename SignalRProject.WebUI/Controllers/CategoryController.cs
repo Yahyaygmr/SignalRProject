@@ -21,7 +21,6 @@ namespace SignalRProject.WebUI.Controllers
             _getCategoryByIdConsume = getCategoryByIdConsume;
             _updateCategoryConsume = updateCategoryConsume;
         }
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             var categories = await _resultCategoryConsume.GetListAsync("categories/categorylist");
@@ -49,7 +48,7 @@ namespace SignalRProject.WebUI.Controllers
         }
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var result = await _deleteCategoryConsume.DeleteAsync("categories/delete", id);
+            var result = await _deleteCategoryConsume.DeleteAsync("categories/deletecategory", id);
             if (result > 0)
             {
                 return RedirectToAction("Index");
