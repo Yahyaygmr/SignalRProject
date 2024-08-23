@@ -26,8 +26,9 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         private readonly IMenuTableService _menuTableService;
         private readonly IBasketService _basketService;
         private readonly INotificationService _notificationService;
+        private readonly IMessageService _messageService;
 
-        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBasketService basketService, INotificationService notificationService)
+        public ServiceManager(IAboutService aboutService, IBookingService bookingService, ICategoryService categoryService, IContactService contactService, IDiscountService discountService, IFeatureService featureService, IProductService productService, ISocialMediaService socialMediaService, ITestimonialService testimonialService, IOrderService orderService, IOrderDetailService orderDetailService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBasketService basketService, INotificationService notificationService, IMessageService messageService)
         {
             _aboutService = aboutService;
             _bookingService = bookingService;
@@ -44,6 +45,7 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
             _menuTableService = menuTableService;
             _basketService = basketService;
             _notificationService = notificationService;
+            _messageService = messageService;
         }
 
         public IAboutService aboutService => _aboutService;
@@ -75,5 +77,7 @@ namespace SignalRProject.BusinessLayer.Concretes.Generics
         public IBasketService basketService => _basketService;
 
         public INotificationService notificationService => _notificationService;
+
+        public IMessageService messageService => _messageService;
     }
 }

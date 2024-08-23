@@ -2,7 +2,7 @@
 
 namespace SignalRProject.WebUI.ViewComponents.DefaultViewComponents
 {
-    public class DefaultBookATableComponentPartial : ViewComponent
+    public class DefaultMessageComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

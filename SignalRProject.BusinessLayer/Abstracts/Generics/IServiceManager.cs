@@ -23,5 +23,6 @@ namespace SignalRProject.BusinessLayer.Abstracts.Generics
         IMenuTableService menuTableService { get; }
         IBasketService basketService { get; }
         INotificationService notificationService { get; }
+        IMessageService messageService { get; }
     }
 }
