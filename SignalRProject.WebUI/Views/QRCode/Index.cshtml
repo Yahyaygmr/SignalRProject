@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h1>QR Code </h1>
+
+<form method="post">
+    <input type="text" name="value"/>
+    <input type="submit" value="Oluştur" class="btn btn-warning"/>
+</form>
+
+@if (ViewBag.QRCode != null)
+{
+    <img src="@ViewBag.QRCode" alt="" style="width:400px;height:400px;"/>
+}
