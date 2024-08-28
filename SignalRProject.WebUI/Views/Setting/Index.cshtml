@@ -1,0 +1,46 @@
+﻿@model UserEditDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h3>Profil Ayarları</h3>
+    </div>
+    <form method="post">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="squareInput">Adınız</label>
+                <input type="text" class="form-control input-square" id="squareInput" asp-for="Name">
+            </div>
+            <div class="form-group">
+                <label for="squareInput">Soyadınız</label>
+                <input type="text" class="form-control input-square" id="squareInput" asp-for="Surname">
+            </div>
+            <div class="form-group">
+                <label for="squareInput">Kullanıcı Adınız</label>
+                <input type="text" class="form-control input-square" id="squareInput" asp-for="UserName">
+            </div>
+            <div class="form-group">
+                <label for="squareInput">Mail Adresiniz</label>
+                <input type="text" class="form-control input-square" id="squareInput" asp-for="Mail">
+            </div>
+            <div class="form-group">
+                <label for="squareInput">Şifreniz</label>
+                <input type="password" class="form-control input-square" id="squareInput" asp-for="Password">
+            </div>
+            <div class="form-group">
+                <label for="squareInput">Şifre Tekrar</label>
+                <input type="password" class="form-control input-square" id="squareInput" asp-for="ConfirmPassword">
+            </div>
+        </div>
+        <div class="card-action">
+            <button class="btn btn-success">Bilgileri Güncelle</button>
+            <a href="/Category/Index/" class="btn btn-danger">Vazgeç</a>
+        </div>
+
+    </form>
+</div>
+
+
