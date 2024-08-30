@@ -1,4 +1,4 @@
-# Signak R Restoran
+# Signal R Restoran
 
 ## Hakkında
 Bu projede Murat Yücedeğ tarfından yayınlanmış olan Udemy eğitimini takiben yapmış olduğumuz; restoranın aldığı siparişleri anlık olarak görebildiği, anlık mesajlaşma, Mail gönderme, anlık bildirim gibi işlemler içeren bir projedir.
